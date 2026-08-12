@@ -20,10 +20,10 @@ const getApiKey = () =>
   process.env.GOOGLE_API_KEY ?? process.env.GEMINI_API_KEY ?? "";
 
 const getRootModel = () =>
-  process.env.TRAVEL_AGENT_MODEL || "gemini-2.5-flash";
+  process.env.TRAVEL_AGENT_MODEL || "gemini-3.5-flash-lite";
 
 const getSearchModel = () =>
-  process.env.TRAVEL_SEARCH_MODEL || "gemini-2.5-flash";
+  process.env.TRAVEL_SEARCH_MODEL || "gemini-3.5-flash-lite";
 
 // Mirror the Python agent's retry config (see agent.py / custom_agents.py).
 // Safety net for Gemini 429 quota errors — do not lower `attempts`.

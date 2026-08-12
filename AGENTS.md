@@ -10,7 +10,7 @@ Guidance for AI coding agents working in this repository. This file complements
   sub-agent (`custom_agents.py`), Wikipedia LangChain tool
   (`third_party_tools.py`), and a travel skill
   (`skills/travel-agent-skill/SKILL.md`).
-- **Models:** root `gemini-flash-latest`; search `gemini-2.5-flash`.
+- **Models:** root `gemini-3.5-flash-lite`; search `gemini-2.5-flash`.
 
 ## Web app (`web/`)
 
@@ -19,8 +19,9 @@ A Next.js 16 chat UI that runs its own copy of the agent in Node via
 
 - Agent lives in `web/src/lib/agent.ts`; streaming API route in
   `web/src/app/api/chat/route.ts`; UI in `web/src/app/page.tsx`.
-- Defaults to `gemini-2.5-flash` for both root and search (separate quota
-  bucket from the Python agent's models). Override with `TRAVEL_AGENT_MODEL` /
+- Defaults to `gemini-3.5-flash-lite` for both root and search (same model as
+  the Python agent; a model in a separate quota bucket from `gemini-2.5-flash`
+  helps dodge 429s). Override with `TRAVEL_AGENT_MODEL` /
   `TRAVEL_SEARCH_MODEL` in `web/.env.local`.
 - `googleSearch` grounding cannot be combined with function tools in one model
   request — that is why search is a separate sub-agent (same as Python).

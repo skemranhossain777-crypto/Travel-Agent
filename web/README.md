@@ -44,6 +44,8 @@ Open [http://localhost:3000](http://localhost:3000) and chat with the agent.
 | Variable          | Purpose                                             | Required |
 |-------------------|-----------------------------------------------------|----------|
 | `GOOGLE_API_KEY`  | Gemini API key (falls back to `GEMINI_API_KEY`).    | yes      |
+| `TRAVEL_AGENT_MODEL` | Root agent model. Defaults to `gemini-3.5-flash-lite`. | no    |
+| `TRAVEL_SEARCH_MODEL` | Search sub-agent model. Defaults to `gemini-3.5-flash-lite`. | no |
 | `TRAVEL_SKILL_DIR`| Directory of the travel skill. Defaults to `./skills/travel-agent-skill`. | no |
 
 ## Scripts
