@@ -1,5 +1,11 @@
+import wikipedia
+
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
+
+# The bundled `wikipedia` library sends a default User-Agent that Wikipedia
+# blocks (returns HTML instead of JSON), which breaks every tool call.
+wikipedia.set_user_agent("TravelAgent/1.0 (https://github.com/google/adk; contact: travel-agent@example.com)")
 
 # Configure the Wikipedia LangChain tool to act as our cultural guide
 langchain_wikipedia_tool = WikipediaQueryRun(

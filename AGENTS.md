@@ -12,6 +12,27 @@ Guidance for AI coding agents working in this repository. This file complements
   (`skills/travel-agent-skill/SKILL.md`).
 - **Models:** root `gemini-flash-latest`; search `gemini-2.5-flash`.
 
+## Web app (`web/`)
+
+A Next.js 16 chat UI that runs its own copy of the agent in Node via
+`@google/adk` (JS). See `web/README.md`.
+
+- Agent lives in `web/src/lib/agent.ts`; streaming API route in
+  `web/src/app/api/chat/route.ts`; UI in `web/src/app/page.tsx`.
+- Defaults to `gemini-2.5-flash` for both root and search (separate quota
+  bucket from the Python agent's models). Override with `TRAVEL_AGENT_MODEL` /
+  `TRAVEL_SEARCH_MODEL` in `web/.env.local`.
+- `googleSearch` grounding cannot be combined with function tools in one model
+  request — that is why search is a separate sub-agent (same as Python).
+- Run with `npm run dev` from `web/`; needs `GOOGLE_API_KEY` in `web/.env.local`.
+- The web app loads a **vendored copy** of the travel skill from
+  `web/skills/travel-agent-skill/SKILL.md` (self-contained for Vercel deploys —
+  Vercel only uploads the `web/` root directory, so `../skills` is unavailable).
+  Keep all copies in sync: `skills/travel-agent-skill/SKILL.md` (canonical),
+  `travel-agent-skill.md` (root doc mirror), and
+  `web/skills/travel-agent-skill/SKILL.md`. `next.config.ts` includes the skill
+  in the `/api/chat` serverless trace via `outputFileTracingIncludes`.
+
 ## Golden rules
 
 1. **Never commit secrets.** `.env` holds real API keys and is git-ignored.

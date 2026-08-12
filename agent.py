@@ -18,7 +18,7 @@ _travel_skill_toolset = skill_toolset.SkillToolset(skills=[_travel_skill])
 
 
 root_agent = Agent(
-    model='gemini-flash-latest',
+    model='gemini-3.5-flash-lite',
     name='root_agent',
     description='A helpful assistant for user questions.',
     tools=[
